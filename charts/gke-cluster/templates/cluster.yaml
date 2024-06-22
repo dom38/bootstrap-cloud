@@ -1,0 +1,35 @@
+{{- range .Values.clusters }}
+
+apiVersion: container.gcp.upbound.io/v1beta1
+kind: Cluster
+metadata:
+  name: {{ .name }}-cluster
+spec:
+  providerConfigRef:
+    name: gcp-config
+  forProvider:
+    initialNodeCount: {{ .forProvider.initialNodeCount | default 1 }}
+    location: {{ .forProvider.location | default "europe-west1-b" }}
+    loggingService: {{ .forProvider.loggingService | default "logging.googleapis.com/kubernetes" }}
+    monitoringService: {{ .forProvider.monitoringService | default "monitoring.googleapis.com/kubernetes" }}
+    network: {{ .forProvider.network | default "default" }}
+  writeConnectionSecretToRef:
+    name: {{ .name }}-cluster-kubeconfig
+    namespace: argocd
+
+---
+
+apiVersion: container.gcp.upbound.io/v1beta1
+kind: NodePool
+metadata:
+  name: {{ .name }}-node-pool
+spec:
+  providerConfigRef:
+    name: gcp-config
+  forProvider:
+    clusterRef:
+      name: {{ .name }}-cluster    
+    initialNodeCount: {{ .forProvider.initialNodeCount | default 1 }}
+    location: {{ .forProvider.location | default "europe-west1-b" }}
+
+{{- end }}
