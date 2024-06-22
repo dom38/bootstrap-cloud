@@ -12,7 +12,7 @@ spec:
           argocd.argoproj.io/secret-type: cluster
   template:
     metadata:
-      name: {{ "'{{ .nameNormalized }}'" }}-harbour
+      name: {{ "'{{ .nameNormalized }}-harbour'" }}
     spec:
       project: core
       source:
