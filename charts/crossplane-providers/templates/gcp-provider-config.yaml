@@ -5,7 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  projectID: trial-404919
+  projectID: {{- .Values.providerConfig.projectID }}
   credentials:
     source: Secret
     secretRef:
