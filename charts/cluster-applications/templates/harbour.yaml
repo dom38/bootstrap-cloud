@@ -3,8 +3,6 @@ kind: ApplicationSet
 metadata:
   name: harbour
 spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
   generators:
   - clusters:
       selector:
@@ -20,8 +18,8 @@ spec:
         targetRevision:  1.15.0
         chart: harbor
       destination:
-        server: '{{.server}}'
-        namespace: default
+        server: '{{server}}'
+        namespace: harbour
       syncPolicy: 
         automated: 
           prune: true
