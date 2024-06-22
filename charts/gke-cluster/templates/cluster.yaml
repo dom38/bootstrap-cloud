@@ -13,6 +13,7 @@ spec:
     loggingService: {{ (.loggingService) | default "logging.googleapis.com/kubernetes" }}
     monitoringService: {{ (.forProvider).monitoringService | default "monitoring.googleapis.com/kubernetes" }}
     network: {{ (.forProvider).network | default "default" }}
+    deletionProtection: {{ (.forProvider).deletionProtection | default False }}
   writeConnectionSecretToRef:
     name: {{ .name }}-cluster-kubeconfig
     namespace: argocd
