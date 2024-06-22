@@ -1,0 +1,5 @@
+apiVersion: v2
+name: cluster-applications
+description: Deploys applicationsets containing required applications
+type: application
+version: 0.1.0

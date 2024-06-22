@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: harbour
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: '{{.cluster}}-harbour'
+    spec:
+      project: core
+      source:
+        repoURL: https://helm.goharbor.io
+        targetRevision:  1.15.0
+        chart: harbor
+      destination:
+        server: '{{.server}}'
+        namespace: default
+      syncPolicy: 
+        automated: 
+          prune: true
+          selfHeal: true 
+          allowEmpty: false
+        syncOptions:
+        - CreateNamespace=true
+        - PrunePropagationPolicy=foreground
+        - PruneLast=true
