@@ -5,3 +5,4 @@ gkeClusters:
   valuesOverrides:
     clusters:
       - name: dev
+      - name: staging
