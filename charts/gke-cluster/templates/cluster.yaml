@@ -8,11 +8,11 @@ spec:
   providerConfigRef:
     name: gcp-config
   forProvider:
-    initialNodeCount: {{ .forProvider.initialNodeCount | default 1 }}
-    location: {{ .forProvider.location | default "europe-west1-b" }}
-    loggingService: {{ .forProvider.loggingService | default "logging.googleapis.com/kubernetes" }}
-    monitoringService: {{ .forProvider.monitoringService | default "monitoring.googleapis.com/kubernetes" }}
-    network: {{ .forProvider.network | default "default" }}
+    initialNodeCount: {{ (.forProvider).initialNodeCount | default 1 }}
+    location: {{ (.forProvider).location | default "europe-west1-b" }}
+    loggingService: {{ (.loggingService) | default "logging.googleapis.com/kubernetes" }}
+    monitoringService: {{ (.forProvider).monitoringService | default "monitoring.googleapis.com/kubernetes" }}
+    network: {{ (.forProvider).network | default "default" }}
   writeConnectionSecretToRef:
     name: {{ .name }}-cluster-kubeconfig
     namespace: argocd
@@ -29,8 +29,8 @@ spec:
   forProvider:
     clusterRef:
       name: {{ .name }}-cluster    
-    initialNodeCount: {{ .forProvider.initialNodeCount | default 1 }}
-    location: {{ .forProvider.location | default "europe-west1-b" }}
+    initialNodeCount: {{ (.forProvider).initialNodeCount | default 1 }}
+    location: {{ (.forProvider).location | default "europe-west1-b" }}
 
 ---
 {{- end }}
