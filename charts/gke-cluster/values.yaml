@@ -1,8 +1,12 @@
-clusters: {}
+# clusters: []
 
 # Example:
 # clusters:
-#   name: dev
-#   forProvider:
-#     initialNodeCount: 3
-#     location: europe-west1-a
+#   - name: dev
+#     forProvider:
+#       initialNodeCount: 3
+#       location: europe-west1-a
+#   - name: dev-2
+#     forProvider:
+#       initialNodeCount: 3
+#       location: europe-west1-a

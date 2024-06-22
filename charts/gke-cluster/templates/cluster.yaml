@@ -32,4 +32,5 @@ spec:
     initialNodeCount: {{ .forProvider.initialNodeCount | default 1 }}
     location: {{ .forProvider.location | default "europe-west1-b" }}
 
+---
 {{- end }}
