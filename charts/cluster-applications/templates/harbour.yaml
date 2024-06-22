@@ -20,8 +20,8 @@ spec:
         targetRevision:  1.15.0
         chart: harbor
       destination:
-        server: '{{.server}}'
-        namespace: default
+        server: {{.server}}
+        namespace: harbour
       syncPolicy: 
         automated: 
           prune: true
