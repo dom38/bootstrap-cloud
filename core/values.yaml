@@ -1,8 +1,8 @@
 clusterApplications:
   enabled: false
 
-gkeClusters:
-  valuesOverrides:
-    clusters:
-      - name: dev
-      - name: staging
+# gkeClusters:
+#   valuesOverrides:
+#     clusters:
+#       - name: dev
+#       - name: staging
