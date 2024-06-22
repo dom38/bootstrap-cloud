@@ -1,2 +1,4 @@
 gkeClusters:
-  valuesOverrides: {}
+  valuesOverrides:
+    clusters:
+      - name: dev
