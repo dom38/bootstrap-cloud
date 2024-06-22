@@ -23,7 +23,7 @@ data:
   credentials: |
     (Your base64 encoded json here)
 ```
-1. Add some clusters in [the core values file](core/values.yaml), these will be created by Crossplane.
+4. Add some clusters in [the core values file](core/values.yaml), these will be created by Crossplane.
 
 At this point, Crossplane will pass the cluster credentials back to the ArgoCD namespace as secrets, however they are missing some information and the clusters themselves are missing permissions. This could be automated, however here are the instructions to manually import them for now:
 
@@ -34,3 +34,11 @@ At this point, Crossplane will pass the cluster credentials back to the ArgoCD n
 1. Enable clusterApplications in [the core values file](core/values.yaml) and ArgoCD will deploy applications on your new GCP clusters.
 
 NOTE: The context names are usually quite long
+
+TODO:
+
+- Automate clusters being added to ArgoCD. This will require:
+  - Credentials for ArgoCD to auth to GCP
+  - External Secrets Operator to fetch the existing secret and restructure it to what Argo needs
+- Tidy up the values and templates
+- Don't deploy singular apps in appsets, deploy an app-of-apps and pass a values file
