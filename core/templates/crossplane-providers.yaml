@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/dom38/bootstrap-cloud.git
     targetRevision: main
-    path: crossplane-providers
+    path: charts/crossplane-providers
 
   destination:
     server: https://kubernetes.default.svc
