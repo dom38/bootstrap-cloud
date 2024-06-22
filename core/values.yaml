@@ -1,3 +1,6 @@
+clusterApplications:
+  enabled: true
+
 gkeClusters:
   valuesOverrides:
     clusters:

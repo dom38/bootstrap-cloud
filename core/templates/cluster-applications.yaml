@@ -1,3 +1,5 @@
+{{- if .Values.clusterApplications.enabled }}
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -33,3 +35,5 @@ spec:
       backoff:
         duration: 30s
   revisionHistoryLimit: 3
+
+{{- end}}
