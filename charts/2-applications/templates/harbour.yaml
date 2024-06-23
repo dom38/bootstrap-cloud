@@ -6,13 +6,19 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  - clusters:
-      selector:
-        matchLabels:
-          argocd.argoproj.io/secret-type: cluster
+    - matrix:
+      generators:
+        - git: 
+          repoURL: https://github.com/dom38/bootstrap-cloud.git
+          revision: main
+          files:
+            - path: charts/gke-cluster/values.yaml
+        - list:
+          elementsYaml: {{ "'{{ .clusters | toJson }}'" }}
+
   template:
     metadata:
-      name: {{ "'{{ .nameNormalized }}-harbour'" }}
+      name: {{ "'{{ .name }}-harbour'" }}
     spec:
       project: core
       source:
@@ -20,7 +26,7 @@ spec:
         targetRevision:  1.15.0
         chart: harbor
       destination:
-        server: {{ "'{{ .server }}'" }}
+        server: {{ "'{{ .name }}-cluster'" }}
         namespace: harbour
       syncPolicy: 
         automated: 

@@ -1,5 +1,5 @@
 clusterApplications:
-  enabled: false
+  enabled: true
 
 clusterOperators:
   enabled: true
