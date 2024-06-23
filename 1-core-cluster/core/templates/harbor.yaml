@@ -17,6 +17,8 @@ spec:
       values: |
         externalURL: https://harbour.local.dev
         adminPassword: "test"
+        expose:
+          type: loadBalancer
         nginx:
           tls:
             commonName: harbour.local.dev
