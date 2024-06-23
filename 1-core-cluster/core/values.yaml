@@ -2,7 +2,7 @@ clusterApplications:
   enabled: false
 
 clusterOperators:
-  enabled: False
+  enabled: true
 
 gkeClusters:
   valuesOverrides: {}
