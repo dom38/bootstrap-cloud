@@ -27,7 +27,7 @@ spec:
         chart: harbor
         helm:
           values: | 
-            {{ "'{{ .values.harbour | toYaml | nindent 12 }}'" }}
+            {{ "'{{ .values.harbour | toYaml | nindent 8 }}'" }}
       destination:
         server: {{ "'{{ .name }}-cluster'" }}
         namespace: harbour
