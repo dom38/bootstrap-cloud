@@ -1,42 +1,39 @@
 {{- if .Values.clusterOperators.enabled }}
 
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
   name: cluster-operators
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "10"
 spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
-  generators:
-  - clusters:
-      selector:
-        matchLabels:
-          argocd.argoproj.io/secret-type: cluster
-  template:
-    metadata:
-      name: {{ "'{{ .nameNormalized }}-operators'" }}
-    spec:
-      project: core
-      source:
-        repoURL: https://github.com/dom38/bootstrap-cloud.git
-        targetRevision: main
-        path: charts/1-operators
-        helm:
-          valueFiles:
-            - {{ "'{{ .nameNormalized }}.yaml'" }}
-      destination:
-        server: {{ "'{{ .server }}'" }}
-        namespace: harbour
-      syncPolicy: 
-        automated: 
-          prune: true
-          selfHeal: true 
-          allowEmpty: false
-        syncOptions:
-        - CreateNamespace=true
-        - PrunePropagationPolicy=foreground
-        - PruneLast=true
+  project: core
+  source:
+    repoURL: https://github.com/dom38/bootstrap-cloud.git
+    targetRevision: main
+    path: charts/1-operators
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  # Sync policy
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true 
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+  revisionHistoryLimit: 3
 
 {{- end}}
