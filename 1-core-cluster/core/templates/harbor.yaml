@@ -19,9 +19,9 @@ spec:
         adminPassword: "test"
         expose:
           type: loadBalancer
-        nginx:
           tls:
-            commonName: harbour.local.dev
+            auto:
+              commonName: harbour.local.dev
 
   destination:
     server: https://kubernetes.default.svc
