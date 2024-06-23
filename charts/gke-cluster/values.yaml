@@ -1,4 +1,6 @@
-clusters: []
+clusters:
+  - name: dev
+  - name: staging
 
 # Example:
 # clusters:
