@@ -26,7 +26,7 @@ spec:
         targetRevision:  1.15.0
         chart: harbor
         helm:
-          valuesObject: {{ "'{{ .values.harbour }}'" }}
+          valuesObject: {{ "'{{ .values.harbour | toYaml }}'" }}
       destination:
         server: {{ "'{{ .name }}-cluster'" }}
         namespace: harbour
