@@ -29,7 +29,7 @@ spec:
           values: | 
             {{ "'{{ .values.harbour | toYaml | nindent 8 }}'" }}
       destination:
-        server: {{ "'{{ .name }}-cluster'" }}
+        name: {{ "'{{ .name }}-cluster'" }}
         namespace: harbour
       syncPolicy: 
         automated: 
