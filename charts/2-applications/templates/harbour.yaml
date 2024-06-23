@@ -25,6 +25,8 @@ spec:
         repoURL: https://helm.goharbor.io
         targetRevision:  1.15.0
         chart: harbor
+        helm:
+          valuesObject: {{ "'{{ .values.harbour }}'" }}
       destination:
         server: {{ "'{{ .name }}-cluster'" }}
         namespace: harbour
