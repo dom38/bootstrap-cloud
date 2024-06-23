@@ -1,0 +1,5 @@
+apiVersion: v2
+name: 1-operators
+description: Deploys app-of-apps to a cluster, focussing on operators
+type: application
+version: 0.1.0

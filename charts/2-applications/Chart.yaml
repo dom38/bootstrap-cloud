@@ -1,0 +1,5 @@
+apiVersion: v2
+name: 2-applications
+description: Deploys app-of-apps to a cluster, focussing on general applications
+type: application
+version: 0.1.0

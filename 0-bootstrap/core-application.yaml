@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/dom38/bootstrap-cloud.git
     targetRevision: main
-    path: core
+    path: 1-core-cluster/core
     helm:
       values: |
 

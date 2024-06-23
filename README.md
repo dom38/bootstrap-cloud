@@ -12,7 +12,7 @@ Requirements:
 Steps:
 
 1. Change the projectID value to your project in [the value file](charts/crossplane-providers/values.yaml) or overwrite it.
-1. From the root of the repo and with the correct kubernetes context, run `bootstrap/bootstrap.sh`. This will install ArgoCD and set up an initial project and applications.
+1. From the root of the repo and with the correct kubernetes context, run `0-bootstrap/bootstrap.sh`. This will install ArgoCD and set up an initial project and applications.
 1. Create a secret in the `crossplane-system` namespace that contains the base64 encoded json from your GCP service account. This should look like this: 
 ```
 apiVersion: v1

@@ -1,6 +1,9 @@
 clusterApplications:
   enabled: false
 
+clusterOperators:
+  enabled: False
+
 gkeClusters:
   valuesOverrides: {}
 #     clusters:
