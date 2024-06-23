@@ -26,8 +26,7 @@ spec:
         targetRevision:  1.15.0
         chart: harbor
         helm:
-          values: | 
-            {{ "'{{ .values.harbour | toJson | nindent 8 }}'" }}
+          values: {{ "'{{ .values.harbour | toJson }}'" }}
       destination:
         name: {{ "'{{ .name }}-cluster'" }}
         namespace: harbour
