@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: https://github.com/dom38/bootstrap-cloud.git
     targetRevision: main
-    path: charts/2-applications
+    path: 2-additional-clusters/2-applications
 
   destination:
     server: https://kubernetes.default.svc
