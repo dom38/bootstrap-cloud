@@ -1,14 +1,14 @@
-clusters:
-  - name: dev
-    values:
-      harbour:
-        core:
-          replicas: 1
-  - name: staging
-    values:
-      harbour:
-        core:
-          replicas: 2
+clusters: []
+  # - name: dev
+  #   values:
+  #     harbour:
+  #       core:
+  #         replicas: 1
+  # - name: staging
+  #   values:
+  #     harbour:
+  #       core:
+  #         replicas: 2
 
 # Example:
 # clusters:
