@@ -6,14 +6,14 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-    - matrix:
+  - matrix:
       generators:
-        - git: 
+      - git: 
           repoURL: https://github.com/dom38/bootstrap-cloud.git
           revision: main
           files:
             - path: charts/gke-cluster/values.yaml
-        - list:
+      - list:
           elementsYaml: {{ "'{{ .clusters | toJson }}'" }}
 
   template:
