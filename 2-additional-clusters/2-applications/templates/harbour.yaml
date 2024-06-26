@@ -9,8 +9,8 @@ spec:
   - git: 
       repoURL: https://github.com/dom38/bootstrap-cloud.git
       revision: main
-      directories:
-        - path: 1-core-cluster/core/cluster-definitions
+      files:
+        - path: 1-core-cluster/core/cluster-definitions/*.yaml
 
   template:
     metadata:
