@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kyverno
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: {{ "'{{ .nameNormalized }}-kyverno'" }}
+    spec:
+      project: core
+      source:
+        repoURL: https://kyverno.github.io/kyverno/
+        targetRevision:  3.2.5
+        chart: kyverno
+      destination:
+        server: {{ "'{{ .server }}'" }}
+        namespace: kyverno
+      syncPolicy: 
+        automated: 
+          prune: true
+          selfHeal: true 
+          allowEmpty: false
+        syncOptions:
+        - CreateNamespace=true
+        - PrunePropagationPolicy=foreground
+        - PruneLast=true
+        - ServerSideApply=true

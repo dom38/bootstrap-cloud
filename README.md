@@ -30,10 +30,8 @@ At this point, Crossplane will pass the cluster credentials back to the ArgoCD n
 1. Port-forward the ArgoCD server to your local machine, unless you have access via an ingress
 1. Login using your credentials, or the admin credentials `argocd login {The address}`
 1. Fetch the contexts of the deployed clusters from the gcloud console using `gcloud container clusters get-credentials {Cluster name} --region {region}`
-1. Add each context using `argocd add cluster {context name}`
+1. Add each context using `argocd add cluster {context name} --name {A short name}`
 1. Enable clusterApplications in [the core values file](core/values.yaml) and ArgoCD will deploy applications on your new GCP clusters.
-
-NOTE: The context names are usually quite long
 
 TODO:
 
@@ -41,4 +39,3 @@ TODO:
   - Credentials for ArgoCD to auth to GCP
   - External Secrets Operator to fetch the existing secret and restructure it to what Argo needs
 - Tidy up the values and templates
-- Don't deploy singular apps in appsets, deploy an app-of-apps and pass a values file

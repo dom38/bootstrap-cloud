@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: external-dns
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: {{ "'{{ .nameNormalized }}-external-dns'" }}
+    spec:
+      project: core
+      source:
+        repoURL: https://kubernetes-sigs.github.io/external-dns/
+        targetRevision:  1.14.5
+        chart: external-dns
+      destination:
+        server: {{ "'{{ .server }}'" }}
+        namespace: external-dns
+      syncPolicy: 
+        automated: 
+          prune: true
+          selfHeal: true 
+          allowEmpty: false
+        syncOptions:
+        - CreateNamespace=true
+        - PrunePropagationPolicy=foreground
+        - PruneLast=true

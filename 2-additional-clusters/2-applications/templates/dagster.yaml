@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: harbour
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - matrix:
+      generators:
+      - git: 
+          repoURL: https://github.com/dom38/bootstrap-cloud.git
+          revision: main
+          files:
+            - path: charts/gke-cluster/values.yaml
+      - list:
+          elementsYaml: {{ "'{{ .clusters | toJson }}'" }}
+
+  template:
+    metadata:
+      name: {{ "'{{ .name }}-dagster'" }}
+    spec:
+      project: core
+      source:
+        repoURL: https://dagster-io.github.io/helm
+        targetRevision:  1.7.10
+        chart: dagster
+        helm:
+          values: {{ "'{{ .values.dagster | toJson }}'" }}
+      destination:
+        name: {{ "'{{ .name }}-cluster'" }}
+        namespace: dagster
+      syncPolicy: 
+        automated: 
+          prune: true
+          selfHeal: true 
+          allowEmpty: false
+        syncOptions:
+        - CreateNamespace=true
+        - PrunePropagationPolicy=foreground
+        - PruneLast=true
