@@ -19,7 +19,8 @@ spec:
         {{- range $path, $_ :=  .Files.Glob  "cluster-definitions/*.yaml" }}
           - {{ $yaml := $.Files.Get $path | fromYaml -}}
             name: {{ $yaml.global.clusterName }}
-            forProvider: {{ $yaml.global.forProvider | toYaml }}
+            forProvider: 
+              {{ $yaml.global.forProvider | toYaml }}
         {{- end }}
 
   destination:
