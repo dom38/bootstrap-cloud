@@ -20,7 +20,7 @@ spec:
           - {{ $yaml := $.Files.Get $path | fromYaml -}}
             name: {{ $yaml.global.clusterName }}
             forProvider: 
-              {{ $yaml.global.forProvider | toYaml }}
+              {{- $yaml.global.forProvider | toYaml | nindent 14 }}
         {{- end }}
 
   destination:
