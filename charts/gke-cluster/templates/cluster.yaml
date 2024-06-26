@@ -32,6 +32,7 @@ spec:
       name: {{ .name }}-cluster    
     initialNodeCount: {{ (.forProvider).initialNodeCount | default 1 }}
     location: {{ (.forProvider).location | default "europe-west1-b" }}
+    nodeCount: {{ (.forProvider).nodeCount | default 1 }}
 
 ---
 {{- end }}
