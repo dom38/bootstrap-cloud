@@ -1,7 +1,6 @@
 global:
   clusterName: staging
   forProvider:
-    initialNodeCount: 3
     autoscaling:
       maxNodeCount: 5
 
