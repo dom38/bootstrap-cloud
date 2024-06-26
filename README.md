@@ -1,6 +1,10 @@
 # Bootstrap-Cloud
 
-A disorganised repo that will create minimal GKE clusters using Crossplane then deploy applications on them using ArgoCD (After some manual configuration)
+A disorganised repo that will create minimal GKE clusters using Crossplane then deploy applications on them using ArgoCD (After some manual configuration).
+
+### Diagram
+
+![](bootstrap-cluster.png)
 
 Requirements:
 
@@ -23,7 +27,7 @@ data:
   credentials: |
     (Your base64 encoded json here)
 ```
-4. Add some clusters in [the core values file](core/values.yaml), these will be created by Crossplane.
+4. Add some clusters in [the cluster-definitions folder](1-core-cluster/core/cluster-definitions), these will be created by Crossplane.
 
 At this point, Crossplane will pass the cluster credentials back to the ArgoCD namespace as secrets, however they are missing some information and the clusters themselves are missing permissions. This could be automated, however here are the instructions to manually import them for now:
 
@@ -31,11 +35,10 @@ At this point, Crossplane will pass the cluster credentials back to the ArgoCD n
 1. Login using your credentials, or the admin credentials `argocd login {The address}`
 1. Fetch the contexts of the deployed clusters from the gcloud console using `gcloud container clusters get-credentials {Cluster name} --region {region}`
 1. Add each context using `argocd add cluster {context name} --name {A short name}`
-1. Enable clusterApplications in [the core values file](core/values.yaml) and ArgoCD will deploy applications on your new GCP clusters.
+1. Enable clusterOperators and clusterApplications in [the core values file](core/values.yaml) and ArgoCD will deploy applications on your new GCP clusters.
 
 TODO:
 
 - Automate clusters being added to ArgoCD. This will require:
   - Credentials for ArgoCD to auth to GCP
   - External Secrets Operator to fetch the existing secret and restructure it to what Argo needs
-- Tidy up the values and templates
