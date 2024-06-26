@@ -6,13 +6,11 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  - matrix:
-      generators:
-      - git: 
-          repoURL: https://github.com/dom38/bootstrap-cloud.git
-          revision: main
-          directories:
-            - path: 1-core-cluster/core/cluster-definitions
+  - git: 
+      repoURL: https://github.com/dom38/bootstrap-cloud.git
+      revision: main
+      directories:
+        - path: 1-core-cluster/core/cluster-definitions
 
   template:
     metadata:
