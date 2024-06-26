@@ -14,7 +14,7 @@ spec:
 
   template:
     metadata:
-      name: {{ "'{{ .name }}-harbour'" }}
+      name: {{ "'{{ .global.clusterName }}-harbour'" }}
     spec:
       project: core
       source:
@@ -24,7 +24,7 @@ spec:
         helm:
           values: {{ "'{{ .applicationValues.harbour | toJson }}'" }}
       destination:
-        name: {{ "'{{ .name }}-cluster'" }}
+        name: {{ "'{{ .global.clusterName }}-cluster'" }}
         namespace: harbour
       syncPolicy: 
         automated: 
