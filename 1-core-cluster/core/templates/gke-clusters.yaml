@@ -15,7 +15,12 @@ spec:
     path: charts/gke-cluster
     helm:
       values: |
-        {{- .Values.gkeClusters.valuesOverrides | toYaml | nindent 8 }}
+        clusters:
+        {{- range $path, $_ :=  .Files.Glob  "cluster-definitions/*.yaml" }}
+          - {{ $yaml := $.Files.Get $path | fromYaml -}}
+            name: {{ $yaml.global.clusterName }}
+            forProvider: {{ $yaml.global.forProvider | toYaml }}
+        {{- end }}
 
   destination:
     server: https://kubernetes.default.svc

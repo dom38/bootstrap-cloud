@@ -1,0 +1,8 @@
+global:
+  clusterName: staging
+  forProvider: {}
+
+applicationValues:
+  harbour:
+    core:
+      replicas: 2

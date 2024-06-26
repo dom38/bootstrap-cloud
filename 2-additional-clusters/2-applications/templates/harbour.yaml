@@ -11,10 +11,10 @@ spec:
       - git: 
           repoURL: https://github.com/dom38/bootstrap-cloud.git
           revision: main
-          files:
-            - path: charts/gke-cluster/values.yaml
+          directories:
+            - path: 1-core-cluster/core/cluster-definitions
       - list:
-          elementsYaml: {{ "'{{ .clusters | toJson }}'" }}
+          elementsYaml: {{ "'{{ .applicationValues | toJson }}'" }}
 
   template:
     metadata:
