@@ -1,6 +1,7 @@
 global:
   clusterName: staging
-  forProvider: {}
+  forProvider:
+    initialNodeCount: 3
 
 applicationValues:
   harbour:
