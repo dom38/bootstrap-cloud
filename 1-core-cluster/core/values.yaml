@@ -5,4 +5,4 @@ clusterOperators:
   enabled: false
 
 gkeClusters:
-  enabled: false
+  enabled: true
