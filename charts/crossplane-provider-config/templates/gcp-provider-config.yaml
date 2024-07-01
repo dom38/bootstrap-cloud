@@ -6,8 +6,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   projectID: {{ .Values.providerConfig.projectID }}
-  source: Secret
-  secretRef:
-    namespace: crossplane-system
-    name: gcp-provider-secret
-    key: credentials
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: gcp-provider-secret
+      key: credentials
