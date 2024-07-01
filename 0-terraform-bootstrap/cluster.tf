@@ -10,6 +10,14 @@ resource "google_service_account" "crossplane" {
   display_name = "Crossplane Service Account"
 }
 
+resource "google_service_account_iam_binding" "crossplane" {
+  service_account_id = google_service_account.crossplane.name
+  role               = "roles/iam.workloadIdentityUser"
+  members = [
+    "serviceAccount:${var.project_id}.svc.id.goog[crossplane-system/${google_service_account.crossplane.account_id}]",
+  ]
+}
+
 resource "google_container_cluster" "primary" {
   name     = var.cluster_name
   location = var.region
