@@ -1,1 +1,3 @@
 charts/crossplane-providers/templates/gcp-provider-secret.yaml
+.terraform*
+terraform.tf*

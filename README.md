@@ -8,26 +8,17 @@ A disorganised repo that will create minimal GKE clusters using Crossplane then 
 
 Requirements:
 
-- A Kubernetes Cluster (Kind, Minikube, GKE, EKS).
 - A GCP account.
 - A GCP service account for Crossplane to use.
 - ArgoCD CLI
 
 Steps:
 
-1. Change the projectID value to your project in [the value file](charts/crossplane-providers/values.yaml) or overwrite it.
-1. From the root of the repo and with the correct kubernetes context, run `0-bootstrap/bootstrap.sh`. This will install ArgoCD and set up an initial project and applications.
-1. Create a secret in the `crossplane-system` namespace that contains the base64 encoded json from your GCP service account. This should look like this: 
-```
-apiVersion: v1
-kind: Secret
-metadata:
-  name: gcp-provider-secret
-data:
-  credentials: |
-    (Your base64 encoded json here)
-```
-4. Add some clusters in [the cluster-definitions folder](1-core-cluster/core/cluster-definitions), these will be created by Crossplane.
+1. Change the projectID value to your project in [the core values file](1-core-cluster/core/values.yaml).
+1. In `0-terraform-bootstrap`, run `terraform init` then `terraform apply and wait for the bootstrap cluster to roll out.
+1. Uncomment the lines in `0-terraform-bootstrap/helm.tf` and run terraform apply again.
+1. Enable `gkeClusters` in the [core values file ](1-core-cluster/core/values.yaml).
+1. Add some clusters in [the cluster-definitions folder](1-core-cluster/core/cluster-definitions), these will be created by Crossplane.
 
 At this point, Crossplane will pass the cluster credentials back to the ArgoCD namespace as secrets, however they are missing some information and the clusters themselves are missing permissions. This could be automated, however here are the instructions to manually import them for now:
 
@@ -42,3 +33,4 @@ TODO:
 - Automate clusters being added to ArgoCD. This will require:
   - Credentials for ArgoCD to auth to GCP
   - External Secrets Operator to fetch the existing secret and restructure it to what Argo needs
+- Split the terraform into two projects so you don't have to manage the Kubernetes provider separately
