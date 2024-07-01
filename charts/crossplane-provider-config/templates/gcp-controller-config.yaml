@@ -1,0 +1,8 @@
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: gcp-controller-config
+  annotations:    
+    iam.gke.io/gcp-service-account: crossplane-sa@{{ .Values.providerConfig.projectID }}.iam.gserviceaccount.com
+spec:
+  serviceAccountName: crossplane-sa

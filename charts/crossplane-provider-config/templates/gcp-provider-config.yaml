@@ -7,8 +7,4 @@ metadata:
 spec:
   projectID: {{ .Values.providerConfig.projectID }}
   credentials:
-    source: Secret
-    secretRef:
-      namespace: crossplane-system
-      name: gcp-provider-secret
-      key: credentials
+    source: InjectedIdentity

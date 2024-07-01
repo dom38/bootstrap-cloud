@@ -1,0 +1,5 @@
+apiVersion: v2
+name: crossplane-provider-config
+description: Contains config for providers to be deployed after the providers
+type: application
+version: 0.1.0
