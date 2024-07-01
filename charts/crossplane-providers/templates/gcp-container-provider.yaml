@@ -6,8 +6,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   package: xpkg.upbound.io/upbound/provider-gcp-container:v1.3.0
-  controllerConfigRef:
-    name: gcp-controller-config
 
 ---
 
