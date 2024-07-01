@@ -7,6 +7,4 @@ metadata:
 spec:
   projectID: {{ .Values.providerConfig.projectID }}
   credentials:
-    source: ImpersonateServiceAccount
-    impersonateServiceAccount:
-      name: crossplane-sa@{{ .Values.providerConfig.projectID }}.iam.gserviceaccount.com
+    source: InjectedIdentity
