@@ -8,3 +8,12 @@ spec:
   package: xpkg.upbound.io/upbound/provider-gcp-container:v1.3.0
   controllerConfigRef:
     name: gcp-controller-config
+
+---
+
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-gcp-storage
+spec:
+  package: xpkg.upbound.io/upbound/provider-gcp-storage:v1.3.0
