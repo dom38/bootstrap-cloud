@@ -34,3 +34,5 @@ TODO:
   - Credentials for ArgoCD to auth to GCP
   - External Secrets Operator to fetch the existing secret and restructure it to what Argo needs
 - Split the terraform into two projects so you don't have to manage the Kubernetes provider separately
+- Figure out workload identity + permissions from terraform
+- Crossplane providers depend on Controller configs, which cannot be created until the provider downloads the CRDs. Added a duff provider in the meantime but this is a circular dependency
