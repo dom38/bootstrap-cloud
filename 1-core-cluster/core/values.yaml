@@ -5,6 +5,6 @@ clusterOperators:
   enabled: false
 
 gkeClusters:
-  enabled: false
+  enabled: true
 
 projectID: trial-404919
