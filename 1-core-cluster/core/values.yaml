@@ -1,8 +1,8 @@
 clusterApplications:
-  enabled: false
+  enabled: true
 
 clusterOperators:
-  enabled: false
+  enabled: true
 
 gkeClusters:
   enabled: true
